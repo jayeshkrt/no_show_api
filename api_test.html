@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>No-show API Test Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; max-width: 850px; }
+    label { display: block; margin-top: 16px; font-weight: 600; }
+    select, input { width: 100%; max-width: 400px; padding: 8px; margin-top: 4px; }
+    textarea { width: 100%; height: 220px; margin-top: 12px; }
+    button { margin-top: 20px; padding: 12px 18px; font-size: 16px; cursor: pointer; }
+    .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .note { margin-top: 16px; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>No-show API Test Page</h1>
+  <p>Use this page to build a request body and send it to your FastAPI `POST /predict` endpoint.</p>
+
+  <label for="apiUrl">API Base URL</label>
+  <input id="apiUrl" type="text" value="https://web-production-d34322.up.railway.app" />
+
+  <div class="row">
+    <div>
+      <label for="specialty">specialty</label>
+      <select id="specialty">
+        <option value="physiotherapy">physiotherapy</option>
+        <option value="occupational therapy">occupational therapy</option>
+        <option value="psychotherapy">psychotherapy</option>
+        <option value="speech therapy">speech therapy</option>
+        <option value="assist">assist</option>
+        <option value="enf">enf</option>
+        <option value="pedagogo">pedagogo</option>
+        <option value="sem especialidade">sem especialidade</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="appointment_time">appointment_time</label>
+      <select id="appointment_time">
+        <option>14:40</option><option>09:10</option><option>13:50</option><option>15:30</option>
+        <option>08:20</option><option>10:30</option><option>14:00</option><option>07:30</option>
+        <option>13:00</option><option>16:35</option><option>16:20</option><option>15:20</option>
+        <option>08:00</option><option>08:40</option><option>11:20</option><option>13:20</option>
+        <option>17:25</option><option>10:20</option><option>18:15</option><option>09:20</option>
+        <option>17:00</option><option>07:20</option><option>09:40</option><option>11:40</option>
+        <option>11:00</option><option>17:40</option><option>14:50</option><option>10:50</option>
+        <option>08:50</option><option>14:20</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="gender">gender</label>
+      <select id="gender">
+        <option value="M">M</option>
+        <option value="F">F</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="appointment_date">appointment_date</label>
+      <input id="appointment_date" type="date" value="2024-07-30" />
+    </div>
+
+    <div>
+      <label for="city">city</label>
+      <select id="city">
+        <option>B. CAMBORIU</option><option>CAMBORIU</option><option>ITAJAÍ</option>
+        <option>NAVEGANTES</option><option>ITAPEMA</option><option>BOMBINHAS</option>
+        <option>PENHA</option><option>PORTO BELO</option><option>BALN. PIÇARRAS</option>
+        <option>ILHOTA</option><option>LUIZ ALVES</option><option>MONTENEGRO</option>
+        <option>BLUMENAU</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="icd">icd</label>
+      <input id="icd" type="text" value="I67" />
+    </div>
+
+    <div>
+      <label for="appointment_shift">appointment_shift</label>
+      <select id="appointment_shift">
+        <option>afternoon</option><option>morning</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="rain_intensity">rain_intensity</label>
+      <select id="rain_intensity">
+        <option>no_rain</option><option>moderate</option><option>weak</option><option>heavy</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="heat_intensity">heat_intensity</label>
+      <select id="heat_intensity">
+        <option>mild</option><option>warm</option><option>cold</option><option>heavy_cold</option><option>heavy_warm</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="disability">disability</label>
+      <select id="disability">
+        <option value=" "> </option>
+        <option>intellectual</option>
+        <option>motor</option>
+        <option>missing</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="age">age</label>
+      <input id="age" type="number" value="68" min="0" max="120" />
+    </div>
+
+    <div>
+      <label for="average_temp_day">average_temp_day</label>
+      <input id="average_temp_day" type="number" step="0.1" value="20.0" />
+    </div>
+
+    <div>
+      <label for="average_rain_day">average_rain_day</label>
+      <input id="average_rain_day" type="number" step="0.1" value="0.0" />
+    </div>
+
+    <div>
+      <label for="max_temp_day">max_temp_day</label>
+      <input id="max_temp_day" type="number" step="0.1" value="26.0" />
+    </div>
+
+    <div>
+      <label for="max_rain_day">max_rain_day</label>
+      <input id="max_rain_day" type="number" step="0.1" value="0.0" />
+    </div>
+
+    <div>
+      <label for="rainy_day_before">rainy_day_before</label>
+      <input id="rainy_day_before" type="number" value="0" min="0" max="1" />
+    </div>
+
+    <div>
+      <label for="storm_day_before">storm_day_before</label>
+      <input id="storm_day_before" type="number" value="0" min="0" max="1" />
+    </div>
+
+    <div>
+      <label>flags</label>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <label><input type="checkbox" id="under_12_years_old" /> under_12_years_old</label>
+        <label><input type="checkbox" id="over_60_years_old" checked /> over_60_years_old</label>
+        <label><input type="checkbox" id="patient_needs_companion" /> patient_needs_companion</label>
+      </div>
+    </div>
+  </div>
+
+  <button id="sendButton">Send request</button>
+
+  <p class="note">If your API is hosted on Railway, make sure the URL above is exactly the public HTTPS URL.</p>
+
+  <label for="responseBody">Response</label>
+  <textarea id="responseBody" readonly></textarea>
+
+  <script>
+    const apiUrlInput = document.getElementById('apiUrl');
+    const responseBody = document.getElementById('responseBody');
+    const sendButton = document.getElementById('sendButton');
+
+    function buildPayload() {
+      const date = document.getElementById('appointment_date').value;
+      return {
+        specialty: document.getElementById('specialty').value,
+        appointment_time: document.getElementById('appointment_time').value,
+        gender: document.getElementById('gender').value,
+        appointment_date: date,
+        city: document.getElementById('city').value,
+        icd: document.getElementById('icd').value,
+        appointment_shift: document.getElementById('appointment_shift').value,
+        rain_intensity: document.getElementById('rain_intensity').value,
+        heat_intensity: document.getElementById('heat_intensity').value,
+        disability: document.getElementById('disability').value,
+        appointment_month: date ? new Date(date).toLocaleString('en-US', { month: 'short' }).toLowerCase().replace('sep', 'sept') : null,
+        appointment_year: date ? new Date(date).getFullYear() : null,
+        age: parseFloat(document.getElementById('age').value) || null,
+        average_temp_day: parseFloat(document.getElementById('average_temp_day').value) || null,
+        average_rain_day: parseFloat(document.getElementById('average_rain_day').value) || null,
+        max_temp_day: parseFloat(document.getElementById('max_temp_day').value) || null,
+        max_rain_day: parseFloat(document.getElementById('max_rain_day').value) || null,
+        rainy_day_before: parseInt(document.getElementById('rainy_day_before').value, 10) || 0,
+        storm_day_before: parseInt(document.getElementById('storm_day_before').value, 10) || 0,
+        under_12_years_old: document.getElementById('under_12_years_old').checked ? 1 : 0,
+        over_60_years_old: document.getElementById('over_60_years_old').checked ? 1 : 0,
+        patient_needs_companion: document.getElementById('patient_needs_companion').checked ? 1 : 0,
+      };
+    }
+
+    sendButton.addEventListener('click', async () => {
+      const apiUrl = apiUrlInput.value.replace(/\/$/, '');
+      const payload = buildPayload();
+      responseBody.value = 'Sending request...';
+
+      try {
+        const res = await fetch(apiUrl + '/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const body = await res.text();
+        responseBody.value = `Status: ${res.status}\n\n${body}`;
+      } catch (err) {
+        responseBody.value = 'Request failed: ' + err;
+      }
+    });
+  </script>
+</body>
+</html>

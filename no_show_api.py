@@ -5,6 +5,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sklearn.impute import SimpleImputer
 
@@ -12,6 +13,13 @@ MODEL_PATH = "no_show_model.pkl"
 DATA_PATH = "medical-appointments-no-show-en.csv"
 
 app = FastAPI(title="No-show Prediction API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.api_route("/", methods=["GET", "POST"])
 def read_root():
