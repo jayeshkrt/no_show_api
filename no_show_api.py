@@ -13,7 +13,7 @@ DATA_PATH = "medical-appointments-no-show-en.csv"
 
 app = FastAPI(title="No-show Prediction API")
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "POST"])
 def read_root():
     return {
         "service": "No-show Prediction API",
