@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sklearn.impute import SimpleImputer
 
@@ -26,8 +27,13 @@ def read_root():
     return {
         "service": "No-show Prediction API",
         "message": "Use POST /predict to get a no-show prediction.",
-        "docs": "/docs"
+        "docs": "/docs",
+        "test_page": "/test"
     }
+
+@app.get("/test")
+def serve_test_page():
+    return FileResponse("api_test.html", media_type="text/html")
 
 @app.get("/health")
 def health_check():
