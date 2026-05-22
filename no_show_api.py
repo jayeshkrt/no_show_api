@@ -13,6 +13,18 @@ DATA_PATH = "medical-appointments-no-show-en.csv"
 
 app = FastAPI(title="No-show Prediction API")
 
+@app.get("/")
+def read_root():
+    return {
+        "service": "No-show Prediction API",
+        "message": "Use POST /predict to get a no-show prediction.",
+        "docs": "/docs"
+    }
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 # Columns used by the original model pipeline
 DATE_COLS = ["appointment_date", "date_of_birth", "entry_service_date"]
 CAT_COLS = [
